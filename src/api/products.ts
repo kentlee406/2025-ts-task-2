@@ -13,7 +13,7 @@
 
 // TODO: 匯入型別定義
 // 提示：需要匯入 CreateProductParams, CreateProductResponse 等型別
-import type {} from '@/types/product'
+import type {CreateProductParams, CreateProductResponse} from '@/types/product'
 import axios from 'axios'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
