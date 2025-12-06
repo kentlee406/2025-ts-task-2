@@ -1,35 +1,14 @@
-import { fileURLToPath, resolve, URL } from 'node:url'
-
-import vue from '@vitejs/plugin-vue'
+// vite.config.ts
 import { defineConfig } from 'vite'
-import vueDevTools from 'vite-plugin-vue-devtools'
+import vue from '@vitejs/plugin-vue'
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
-  base: '/2025-ts-task-2/', // ← 注意這裡
-  plugins: [vue(), vueDevTools()],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
+  plugins: [vue()],
+  // 這裡設定你的 GitHub Pages 子路徑
+  base: '/2025-ts-task-2/',
   build: {
-    target: 'esnext',
-    outDir: 'dist', // 專案根目錄下
-    emptyOutDir: true, // build 前清空 dist
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-      },
-    },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        quietDeps: true,
-        silenceDeprecations: ['mixed-decls', 'import', 'color-functions', 'global-builtin'],
-        verbose: false,
-      },
-    },
+    // 不要額外修改 rollupOptions，避免錯誤
+    outDir: 'dist', // 預設即可，或改成你想的資料夾
   },
 })
