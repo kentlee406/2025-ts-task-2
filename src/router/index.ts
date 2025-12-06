@@ -2,7 +2,7 @@ import Dashboard from '@/components/Dashboard.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(), // 這裡要改
   routes: [
     {
       path: '/',
