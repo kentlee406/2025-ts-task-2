@@ -1,15 +1,19 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import LoginPage from '@/views/Login.vue'
-import Dashboard from '@/components/Dashboard.vue'
 
 const routes = [
-  { path: '/', redirect: '/login' },
-  { path: '/login', component: LoginPage },
-  { path: '/dashboard', component: Dashboard },
+  {
+    path: '/',
+    redirect: '/login',
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login.vue'),
+  },
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory('/2025-ts-task-2/'),
   routes,
 })
 
