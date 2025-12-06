@@ -6,7 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '2025-ts-task-2', // ← 注意這裡
+  base: '/2025-ts-task-2/', // ← 注意這裡
   plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
@@ -15,6 +15,8 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
+    outDir: 'dist', // 專案根目錄下
+    emptyOutDir: true, // build 前清空 dist
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
