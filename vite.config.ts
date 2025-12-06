@@ -21,9 +21,6 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
       },
-      output: {
-        dir: resolve(__dirname, 'dist'),
-      },
     },
   },
   css: {
