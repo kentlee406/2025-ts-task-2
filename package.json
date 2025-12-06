@@ -17,7 +17,7 @@
     "generate": "npx openapi-typescript ./src/openapi/raw/ec-course.json -o ./src/openapi/types/ec-course.ts"
   },
   "dependencies": {
-    "axios": "^1.12.2",
+    "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
@@ -40,5 +40,18 @@
     "vite": "^7.0.6",
     "vite-plugin-vue-devtools": "^8.0.0",
     "vue-tsc": "^3.0.4"
-  }
+  },
+  "description": "這是一個基於 Vue 3 和 TypeScript 的商品管理系統練習題目。專案保留了完整的 Vue 功能邏輯，但移除了 TypeScript 的型別註解，讓學習者專注於 TypeScript 語法的練習。",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kentlee406/2025-ts-task-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kentlee406/2025-ts-task-2/issues"
+  },
+  "homepage": "https://github.com/kentlee406/2025-ts-task-2#readme"
 }
