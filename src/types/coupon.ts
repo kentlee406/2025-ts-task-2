@@ -21,11 +21,11 @@ export type CreateCouponParams = {
 export type EditCouponParams = {
   id: string // 要編輯的 coupon id
   data: {
-    title?: string
-    code?: string
-    is_enabled?: number
-    percent?: number
-    due_date?: number
+    title: string
+    code: string
+    is_enabled: number
+    percent: number
+    due_date: number
   }
 }
 
@@ -40,7 +40,16 @@ export type Pagination = {
 
 // API 回應型別
 export type GetCouponsResponse = {
-  coupons: CouponData[] | { id: string; title: string; is_enabled: number; percent: number; due_date: number; code: string }[]
+  coupons:
+    | CouponData[]
+    | {
+        id: string
+        title: string
+        is_enabled: number
+        percent: number
+        due_date: number
+        code: string
+      }[]
   success: boolean
   // coupons
   pagination: Pagination
