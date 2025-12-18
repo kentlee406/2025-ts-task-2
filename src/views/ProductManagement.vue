@@ -54,18 +54,22 @@ const pagination = ref<Pagination>({
   category: '',
 })
 
-const getProducts = async () => {
+const getProducts = async (): Promise<void> => {
   try {
-    const res = await apiGetProducts({
-      page: currentPage.value,
-    })
+    console.log('page', currentPage.value)
+
+    const res = await apiGetProducts({ page: currentPage.value })
+
+    console.log('products api res', res.data)
 
     products.value = res.data.products
     pagination.value = res.data.pagination
   } catch (error) {
+    console.error('getProducts error', error)
     alert('取得產品列表失敗')
   }
 }
+
 onMounted(() => {
   getProducts()
 })
