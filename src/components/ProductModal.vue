@@ -36,7 +36,7 @@ interface ProductModalProps {
 // TODO: 定義 props
 // 提示：使用 defineProps<ProductModalProps>()
 const { product } = defineProps<ProductModalProps>()
-const tempProduct = ref<ProductData>(getInitialProductData())
+const tempProduct = ref<ProductData>()
 const emit = defineEmits(['get-products'])
 
 // TODO: 為模板引用加上型別註解
