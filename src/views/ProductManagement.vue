@@ -70,6 +70,11 @@ onMounted(() => {
   getProducts()
 })
 
+// ⭐ 分頁改變時重新抓資料（關鍵）
+watch(currentPage, () => {
+  getProducts()
+})
+
 // TODO: 為 getInitialProductData 函式加上型別註解
 // 提示：這個函式不接受參數，回傳 ProductData 型別
 const getInitialProductData = (): ProductData => ({
@@ -119,10 +124,6 @@ const handleDeleteProduct = async (productId: string): Promise<void> => {
     getProducts()
   }
 }
-
-watch(currentPage, () => {
-  getProducts()
-})
 </script>
 
 <template>
