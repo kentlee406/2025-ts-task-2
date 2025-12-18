@@ -70,14 +70,14 @@ export type CreateProductParams = {
   content: string
   is_enabled: number
   imageUrl: string
-  imagesUrl: string
+  imagesUrl: string[]
 }
 
 // TODO: 定義編輯商品參數型別
 // 提示：編輯商品需要 id 和 data 物件
 export type EditProductParams = {
   // 在這裡加上型別定義，將 unknown 替換為正確的型別
-  id: unknown
+  id: string
   data: {
     title: string
     category: string

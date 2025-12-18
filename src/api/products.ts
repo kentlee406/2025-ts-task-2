@@ -62,7 +62,7 @@ productApi.interceptors.response.use(
 // - 回傳值是 Promise<AxiosResponse<GetProductsResponse>>
 export const apiGetProducts = (params: {
   page?: string
-  categoery?: string
+  category?: string
 }): Promise<AxiosResponse<GetProductsResponse>> =>
   productApi.get(`/v2/api/${API_PATH}/admin/products`, {
     params,
@@ -72,7 +72,9 @@ export const apiGetProducts = (params: {
 // 提示：
 // - 參數 params 的型別是 CreateProductParams
 // - 回傳值是 Promise<AxiosResponse<CreateProductResponse>>
-export const apiCreateProduct = (params: CreateProductParams) =>
+export const apiCreateProduct = (
+  params: CreateProductParams,
+): Promise<AxiosResponse<CreateProductResponse>> =>
   productApi.post(`/v2/api/${API_PATH}/admin/product`, {
     data: params,
   })

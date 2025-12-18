@@ -19,10 +19,7 @@ const couponApi = axios.create({
 // Request 攔截器：自動帶 token
 couponApi.interceptors.request.use(
   (request) => {
-    const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/,
-      '$1'
-    )
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
 
     if (token) {
       request.headers['Authorization'] = token
@@ -30,29 +27,35 @@ couponApi.interceptors.request.use(
 
     return request
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 )
 
 // Response 攔截器：只回傳 data
 couponApi.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject(error.response?.data || error)
+  (error) => Promise.reject(error.response?.data || error),
 )
 
 // ==================== API 函式 ==================== //
 
 // 取得優惠券列表
-export const apiGetCoupons = (params?: Record<string, any>): Promise<AxiosResponse<GetCouponsResponse>> => {
+export const apiGetCoupons = (params?: {
+  page?: string
+}): Promise<AxiosResponse<GetCouponsResponse>> => {
   return couponApi.get(`/v2/api/${API_PATH}/admin/coupons`, { params })
 }
 
 // 建立優惠券
-export const apiCreateCoupon = (data: CreateCouponParams): Promise<AxiosResponse<CreateCouponResponse>> => {
+export const apiCreateCoupon = (
+  data: CreateCouponParams,
+): Promise<AxiosResponse<CreateCouponResponse>> => {
   return couponApi.post(`/v2/api/${API_PATH}/admin/coupon`, { data })
 }
 
 // 編輯優惠券
-export const apiEditCoupon = (params: EditCouponParams): Promise<AxiosResponse<EditCouponResponse>> => {
+export const apiEditCoupon = (
+  params: EditCouponParams,
+): Promise<AxiosResponse<EditCouponResponse>> => {
   const { id, data } = params
   return couponApi.put(`/v2/api/${API_PATH}/admin/coupon/${id}`, { data })
 }
