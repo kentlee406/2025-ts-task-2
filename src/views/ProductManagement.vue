@@ -24,6 +24,7 @@ import ProductModal from '@/components/ProductModal.vue'
 // 提示：從 @/types/product 匯入 Pagination, ProductData
 import type { Pagination, ProductData } from '@/types/product'
 import { onMounted, ref, useTemplateRef } from 'vue'
+import { watch } from 'vue'
 
 // TODO: 為模板引用加上型別註解
 // 提示：使用 useTemplateRef<InstanceType<typeof ProductModal>>()
@@ -53,19 +54,28 @@ const pagination = ref<Pagination>({
   category: '',
 })
 
-const getProducts = async () => {
+const getProducts = async (): Promise<void> => {
   try {
-    const res = await apiGetProducts({
-      page: currentPage.value,
-    })
+    console.log('page', currentPage.value)
+
+    const res = await apiGetProducts({ page: currentPage.value })
+
+    console.log('products api res', res.data)
 
     products.value = res.data.products
     pagination.value = res.data.pagination
   } catch (error) {
+    console.error('getProducts error', error)
     alert('取得產品列表失敗')
   }
 }
+
 onMounted(() => {
+  getProducts()
+})
+
+// ⭐ 分頁改變時重新抓資料（關鍵）
+watch(currentPage, () => {
   getProducts()
 })
 

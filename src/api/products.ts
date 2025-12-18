@@ -62,7 +62,7 @@ productApi.interceptors.response.use(
 // - 回傳值是 Promise<AxiosResponse<GetProductsResponse>>
 export const apiGetProducts = (params: {
   page?: string
-  categoery?: string
+  category?: string
 }): Promise<AxiosResponse<GetProductsResponse>> =>
   productApi.get(`/v2/api/${API_PATH}/admin/products`, {
     params,

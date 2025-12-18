@@ -23,7 +23,6 @@ import { useProductForm } from '@/composable/useProductData'
 // 提示：從 @/types/product 匯入 ProductData
 import type { ProductData } from '@/types/product'
 import { Modal } from 'bootstrap'
-
 import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue'
 
 // TODO: 定義 Props 介面
@@ -36,7 +35,7 @@ interface ProductModalProps {
 // TODO: 定義 props
 // 提示：使用 defineProps<ProductModalProps>()
 const { product } = defineProps<ProductModalProps>()
-const tempProduct = ref<ProductData>(getInitialProductData())
+const tempProduct = ref<ProductData>()
 const emit = defineEmits(['get-products'])
 
 // TODO: 為模板引用加上型別註解
