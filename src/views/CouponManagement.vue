@@ -60,27 +60,18 @@ const openModal = (coupon?: CouponData) => {
     isLoading.value = true
 
     try {
-      if (coupon) {
-        await apiEditCoupon({
-          id: CouponData.id,
-          data: {
-            ...CouponData,
-            is_enabled: Number(CouponData.is_enabled),
-          },
-        })
-      } else {
-        await apiCreateCoupon({
-          ...CouponData,
-          is_enabled: Number(CouponData.is_enabled),
-        })
-      }
-    } catch (error) {
-      alert('新增/編輯優惠券失敗')
-    } finally {
-      isLoading.value = false
-      getCoupons()
-    }
+      if (CouponData.id) {
+  await apiEditCoupon({
+    id: CouponData.id,
+    data: { ...CouponData, is_enabled: Number(CouponData.is_enabled) },
   })
+} else {
+  await apiCreateCoupon({
+    ...CouponData,
+    is_enabled: Number(CouponData.is_enabled),
+  })
+}
+
 }
 
 const openDeleteModal = (couponId: string) => {
