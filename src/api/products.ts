@@ -72,36 +72,36 @@ export const apiGetProducts = (params: {
 // 提示：
 // - 參數 params 的型別是 CreateProductParams
 // - 回傳值是 Promise<AxiosResponse<CreateProductResponse>>
-// export const apiCreateProduct = (
-//   params: CreateProductParams,
-// ): Promise<AxiosResponse<CreateProductResponse>> =>
-//   productApi.post(`/v2/api/${API_PATH}/admin/product`, {
-//     data: params,
-//   })
 export const apiCreateProduct = (
   params: CreateProductParams,
 ): Promise<AxiosResponse<CreateProductResponse>> =>
-  productApi.post(`/v2/api/${API_PATH}/admin/product`, params)
+  productApi.post(`/v2/api/${API_PATH}/admin/product`, {
+    data: params,
+  })
+// export const apiCreateProduct = (
+//   params: CreateProductParams,
+// ): Promise<AxiosResponse<CreateProductResponse>> =>
+//   productApi.post(`/v2/api/${API_PATH}/admin/product`, params)
 
 // TODO: 為 apiEditProduct 函式加上型別註解
 // 提示：
 // - 參數 params 的型別是 EditProductParams
 // - 回傳值是 Promise<AxiosResponse<EditProductResponse>>
-// export const apiEditProduct = (
-//   params: EditProductParams,
-// ): Promise<AxiosResponse<EditProductResponse>> => {
-//   const { data, id } = params
-//   return productApi.put(`/v2/api/${API_PATH}/admin/product/${id}`, {
-//     data,
-//   })
-// }
-
 export const apiEditProduct = (
   params: EditProductParams,
 ): Promise<AxiosResponse<EditProductResponse>> => {
   const { data, id } = params
-  return productApi.put(`/v2/api/${API_PATH}/admin/product/${id}`, data)
+  return productApi.put(`/v2/api/${API_PATH}/admin/product/${id}`, {
+    data,
+  })
 }
+
+// export const apiEditProduct = (
+//   params: EditProductParams,
+// ): Promise<AxiosResponse<EditProductResponse>> => {
+//   const { data, id } = params
+//   return productApi.put(`/v2/api/${API_PATH}/admin/product/${id}`, data)
+// }
 
 // TODO: 為 apiDeleteProduct 函式加上型別註解
 // 提示：
