@@ -12,7 +12,7 @@ const form = ref({
 
 const isProcessLogin = ref(false)
 
-const handleLogin = async () => {
+const handleLogin = async (): Promise<void> => {
   isProcessLogin.value = true
   try {
     const res = await apiUserLogin({
@@ -21,7 +21,9 @@ const handleLogin = async () => {
     })
 
     const { token, expired } = res.data
-    document.cookie = `hexToken=${token};expires=${new Date(expired)};`
+
+    document.cookie = `hexToken=${token}; expires=${new Date(expired).toUTCString()}; path=/`
+
     router.push('/product-management')
   } catch (error) {
     alert('登入失敗')
