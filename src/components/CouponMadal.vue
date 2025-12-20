@@ -11,7 +11,7 @@ interface CouponModalProps {
 }
 
 // 定義 props
-const { coupon } = defineProps<CouponModalProps>()
+const { coupon, isLoading } = defineProps<CouponModalProps>()
 
 const initialFormData: CouponData = {
   id: '',
@@ -22,17 +22,17 @@ const initialFormData: CouponData = {
   code: '',
 }
 
-const tempCoupon = ref<CouponData>(initialFormData)
+const tempCoupon = ref<CouponData>({ ...initialFormData })
 
 watch(
   () => coupon,
   (newCoupon) => {
-    tempCoupon.value = newCoupon
+    tempCoupon.value = { ...newCoupon }
   },
 )
 
 // HTMLElement
-const modalRef = useTemplateRef('modalRef')
+const modalRef = useTemplateRef<HTMLElement | null>('modalRef')
 let modal: Modal | null = null
 
 let onSaveCoupon: ((couponData: CouponData) => Promise<void>) | null = null
@@ -52,11 +52,13 @@ onUnmounted(() => {
 const openModal = (onSave: (couponData: CouponData) => Promise<void>) => {
   if (modal) {
     modal.show()
-    onSaveCoupon = async (couponData) => {
+    onSaveCoupon = async (couponData: CouponData) => {
       try {
         await onSave(couponData)
         closeModal()
-      } catch (error) {}
+      } catch (error) {
+        // 錯誤已在外層處理
+      }
     }
   }
 }
@@ -97,7 +99,9 @@ defineExpose({
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content rounded-lg">
         <div class="modal-header">
-          <h5 class="modal-title" id="couponModalLabel">新增優惠券</h5>
+          <h5 class="modal-title" id="couponModalLabel">
+            {{ tempCoupon.id ? '編輯優惠券' : '新增優惠券' }}
+          </h5>
           <button
             type="button"
             class="btn-close"
@@ -157,7 +161,8 @@ defineExpose({
                   class="form-check-input"
                   type="checkbox"
                   id="flexSwitchCouponEnable"
-                  :checked="Boolean(tempCoupon.is_enabled)"
+                  :true-value="1"
+                  :false-value="0"
                 />
               </div>
             </div>

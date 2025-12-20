@@ -53,25 +53,31 @@ const openModal = (coupon?: CouponData) => {
   if (coupon) {
     form.value = { ...coupon }
   } else {
-    form.value = initialFormData
+    form.value = { ...initialFormData }
   }
 
-  couponModalRef.value?.openModal(async (CouponData: CouponData) => {
+  couponModalRef.value?.openModal(async (couponData: CouponData) => {
     isLoading.value = true
 
     try {
       if (coupon) {
         await apiEditCoupon({
-          id: CouponData.id,
+          id: couponData.id,
           data: {
-            ...CouponData,
-            is_enabled: Number(CouponData.is_enabled),
+            title: couponData.title,
+            is_enabled: Number(couponData.is_enabled),
+            percent: couponData.percent,
+            due_date: couponData.due_date,
+            code: couponData.code,
           },
         })
       } else {
         await apiCreateCoupon({
-          ...CouponData,
-          is_enabled: Number(CouponData.is_enabled),
+          title: couponData.title,
+          is_enabled: Number(couponData.is_enabled),
+          percent: couponData.percent,
+          due_date: couponData.due_date,
+          code: couponData.code,
         })
       }
     } catch (error) {
